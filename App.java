@@ -39,7 +39,6 @@ public class App
         //SOURCE PANEL
         JPanel sourceImageBorderPanel = new JPanel();
         frame.add(sourceImageBorderPanel);
-        sourceImageBorderPanel.setBackground(Color.BLACK);
         sourceImageBorderPanel.setLayout(new GridLayout(1, 1, 0, 0));
 
         JPanel sourceImageSlotPanel = new JPanel();
@@ -154,13 +153,11 @@ public class App
         clearMenuItem.doClick();
 
         //SETTING COLORS
-        frame.getContentPane().setBackground(Color.BLACK);
-        
-        sourceImageSlotPanel.setBackground(Color.GRAY);
-        sourceImageBorderPanel.setBorder(new CompoundBorder(BorderFactory.createLineBorder(Color.BLACK, 10), BorderFactory.createLineBorder(Color.WHITE, 5)));
+        sourceImageSlotPanel.setBackground(Color.LIGHT_GRAY);
+        sourceImageBorderPanel.setBorder(new CompoundBorder(BorderFactory.createLineBorder(frame.getBackground(), 10), BorderFactory.createLineBorder(Color.WHITE, 5)));
 
-        resultImageSlotPanel.setBackground(Color.GRAY);
-        resultImageBorderPanel.setBorder(new CompoundBorder(BorderFactory.createLineBorder(Color.BLACK, 10), BorderFactory.createLineBorder(Color.WHITE, 5)));
+        resultImageSlotPanel.setBackground(Color.LIGHT_GRAY);
+        resultImageBorderPanel.setBorder(new CompoundBorder(BorderFactory.createLineBorder(frame.getBackground(), 10), BorderFactory.createLineBorder(Color.WHITE, 5)));
     }
 
     //ACTION LISTENERS
