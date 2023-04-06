@@ -3,7 +3,6 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.Component;
-import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -32,7 +31,7 @@ public class App
         JFrame frame = new JFrame();
         frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("App");
+        frame.setTitle("Image Editor");
         frame.setVisible(true);
         frame.setLayout(new GridLayout(1, 2, 0, 0));
 
@@ -134,18 +133,18 @@ public class App
         this.contrastValueSpinner = contrastValueSpinner;
 
         //ADDING ACTION LISTENERS
-        loadMenuItem.addActionListener(actionEvent ->{this.onLoadMenuItemActionPerformed(actionEvent);});
-        saveMenuItem.addActionListener(actionEvent ->{this.onSaveMenuItemActionPerformed(actionEvent);});
-        clearMenuItem.addActionListener(actionEvent ->{this.onClearMenuItemActionPerformed(actionEvent);});
-        switchMenuItem.addActionListener(actionEvent ->{this.onSwitchMenuItemActionPerformed(actionEvent);});
-        resetMenuItem.addActionListener(actionEvent ->{this.onResetMenuItemActionPerformed(actionEvent);});
-        redMenuItem.addActionListener(actionEvent ->{this.onRedMenuItemActionPerformed(actionEvent);});
-        greenMenuItem.addActionListener(actionEvent ->{this.onGreenMenuItemActionPerformed(actionEvent);});
-        blueMenuItem.addActionListener(actionEvent ->{this.onBlueMenuItemActionPerformed(actionEvent);});
-        rgbMenuItem.addActionListener(actionEvent ->{this.onRgbMenuItemActionPerformed(actionEvent);});
-        yuvMenuItem.addActionListener(actionEvent ->{this.onYuvMenuItemActionPerformed(actionEvent);});
-        brightnessRangeMenuItem.addActionListener(actionEvent ->{this.onBrightnessRangeMenuItemActionPerformed(actionEvent);});
-        negativeMenuItem.addActionListener(actionEvent ->{this.onNegativeMenuItemActionPerformed(actionEvent);});
+        loadMenuItem.addActionListener(actionEvent ->{this.onLoadMenuItemActionPerformed();});
+        saveMenuItem.addActionListener(actionEvent ->{this.onSaveMenuItemActionPerformed();});
+        clearMenuItem.addActionListener(actionEvent ->{this.onClearMenuItemActionPerformed();});
+        switchMenuItem.addActionListener(actionEvent ->{this.onSwitchMenuItemActionPerformed();});
+        resetMenuItem.addActionListener(actionEvent ->{this.onResetMenuItemActionPerformed();});
+        redMenuItem.addActionListener(actionEvent ->{this.onRedMenuItemActionPerformed();});
+        greenMenuItem.addActionListener(actionEvent ->{this.onGreenMenuItemActionPerformed();});
+        blueMenuItem.addActionListener(actionEvent ->{this.onBlueMenuItemActionPerformed();});
+        rgbMenuItem.addActionListener(actionEvent ->{this.onRgbMenuItemActionPerformed();});
+        yuvMenuItem.addActionListener(actionEvent ->{this.onYuvMenuItemActionPerformed();});
+        brightnessRangeMenuItem.addActionListener(actionEvent ->{this.onBrightnessRangeMenuItemActionPerformed();});
+        negativeMenuItem.addActionListener(actionEvent ->{this.onNegativeMenuItemActionPerformed();});
         brightnessValueSpinner.addChangeListener(changeEvent -> {this.onBrightnessValueSpinnerChanged(changeEvent);});
         contrastValueSpinner.addChangeListener(changeEvent -> {this.onContrastValueSpinnerChanged(changeEvent);});
 
@@ -161,7 +160,7 @@ public class App
     }
 
     //ACTION LISTENERS
-    private void onLoadMenuItemActionPerformed(ActionEvent actionEventParameter) 
+    private void onLoadMenuItemActionPerformed() 
     {
         try
         {
@@ -181,7 +180,7 @@ public class App
         catch(Exception exception){}
     }
 
-    private void onSaveMenuItemActionPerformed(ActionEvent actionEventParameter) 
+    private void onSaveMenuItemActionPerformed() 
     {
         try
         {
@@ -200,7 +199,7 @@ public class App
         catch(Exception exception){}
     }
 
-    private void onClearMenuItemActionPerformed(ActionEvent actionEventParameter) 
+    private void onClearMenuItemActionPerformed() 
     {
         this.resetBothSpinners();
 
@@ -208,63 +207,63 @@ public class App
         this.setMenuEnabled(false);
     }
 
-    private void onSwitchMenuItemActionPerformed(ActionEvent actionEventParameter) 
+    private void onSwitchMenuItemActionPerformed() 
     {
         this.setSourceImage(this.getResultImage());
 
         this.resetBothSpinners();
     }
 
-    private void onResetMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onResetMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
         this.setResultImage(this.getSourceImage());
     }
 
-    private void onRedMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onRedMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
         this.setResultImage(ImageEditor.toGrayScale(this.getSourceImage(), ImageEditor.GrayscaleType.R));
     }
 
-    private void onGreenMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onGreenMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
         this.setResultImage(ImageEditor.toGrayScale(this.getSourceImage(), ImageEditor.GrayscaleType.G));
     }
 
-    private void onBlueMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onBlueMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
         this.setResultImage(ImageEditor.toGrayScale(this.getSourceImage(), ImageEditor.GrayscaleType.B));
     }
 
-    private void onRgbMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onRgbMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
         this.setResultImage(ImageEditor.toGrayScale(this.getSourceImage(), ImageEditor.GrayscaleType.RGB));
     }
 
-    private void onYuvMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onYuvMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
         this.setResultImage(ImageEditor.toGrayScale(this.getSourceImage(), ImageEditor.GrayscaleType.YUV));
     }
 
-    private void onBrightnessRangeMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onBrightnessRangeMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
         this.setResultImage(ImageEditor.changeBrightnessRange(this.getSourceImage()));
     }
 
-    private void onNegativeMenuItemActionPerformed(ActionEvent actionEventParameter)
+    private void onNegativeMenuItemActionPerformed()
     {
         this.resetBothSpinners();
 
@@ -288,7 +287,6 @@ public class App
         double value = (double)spinner.getValue();
         this.setResultImage(ImageEditor.changeContrast(this.getSourceImage(), value));
     }
-
 
 
     //OTHER
