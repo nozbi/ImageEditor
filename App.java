@@ -29,11 +29,12 @@ public class App
     {
         //FRAME
         JFrame frame = new JFrame();
-        frame.setSize(500,500);
+        frame.setSize(600,400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Image Editor");
         frame.setVisible(true);
         frame.setLayout(new GridLayout(1, 2, 0, 0));
+        frame.setLocationRelativeTo(null);
 
         //SOURCE PANEL
         JPanel sourceImageBorderPanel = new JPanel();
